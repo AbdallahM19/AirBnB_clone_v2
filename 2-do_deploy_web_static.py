@@ -1,17 +1,16 @@
 #!/usr/bin/python3
 """
-Write a Fabric script (based on the file 1-pack_web_static.py)
-that distributes an archive to your web servers,
-using the function do_deploy:
+Write a Fabric script (based on the file 2-do_deploy_web_static.py)
+that creates and distributes an archive to your web servers,
+using the function deploy:
 """
 
 from fabric.api import *
 from os.path import exists, basename
+from datetime import datetime
 
 
 env.hosts = ['54.85.96.172', '54.210.130.17']
-env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
 
 
 def do_deploy(archive_path):
