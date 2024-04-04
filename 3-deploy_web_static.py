@@ -38,22 +38,24 @@ def do_deploy(archive_path):
     if not exists(archive_path):
         return False
     try:
-        archive_name = archive_path.split('/')[-1]
+        archive_file = archive_path.split('/')[-1]
+        archive_name = archive_file.split('.')[0]
         archive_folder = '/data/web_static/releases/{}'.format(
-            archive_name.split('.')[0]
+            archive_name
         )
-        put(archive_path, '/tmp/')
-        run('sudo mkdir -p {}'.format(archive_folder))
-        run('sudo tar -xzf /tmp/{} -C {}'.format(
-            archive_name, archive_folder
+        put(archive_path, '/tmp/{}'.format(archive_file))
+        run("rm -rf {}/".format(archive_folder))
+        run('sudo mkdir -p {}/'.format(archive_folder))
+        run('sudo tar -xzf /tmp/{} -C {}/'.format(
+            archive_file, archive_folder
         ))
-        run('sudo rm /tmp/{}'.format(archive_name))
-        run('sudo mv {}/web_static/* {}'.format(
+        run('sudo rm /tmp/{}'.format(archive_file))
+        run('sudo mv {}/web_static/* {}/'.format(
             archive_folder, archive_folder
         ))
         run('sudo rm -rf {}/web_static'.format(archive_folder))
         run('sudo rm -rf /data/web_static/current')
-        run('sudo ln -s {} /data/web_static/current'.format(
+        run('sudo ln -s {}/ /data/web_static/current'.format(
             archive_folder
         ))
         return True
