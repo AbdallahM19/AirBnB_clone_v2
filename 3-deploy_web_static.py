@@ -38,7 +38,7 @@ def do_deploy(archive_path):
     if not exists(archive_path):
         return False
     try:
-        archive_name = archive_path.split('/')[1]
+        archive_name = archive_path.split('/')[-1]
         archive_folder = '/data/web_static/releases/{}'.format(
             archive_name.split('.')[0]
         )
