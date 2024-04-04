@@ -14,9 +14,7 @@ def do_clean(number=0):
     """
     Deletes out-of-date archives
     """
-    number = int(number)
-    if number == 0:
-        number = 1
+    number = 1 if int(number) == 0 else int(number)
 
     archive = sorted(os.listdir("versions"))
     [archive.pop() for i in range(number)]
