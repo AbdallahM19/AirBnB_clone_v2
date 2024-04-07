@@ -7,7 +7,7 @@ from fabric.api import *
 import os
 from datetime import datetime
 
-env.hosts = ['54.85.96.172', '54.210.130.17']
+env.hosts = ['54.226.45.35', '100.25.46.237']
 
 
 def do_clean(number=0):

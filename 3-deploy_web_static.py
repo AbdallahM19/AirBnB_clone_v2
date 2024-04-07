@@ -10,7 +10,7 @@ from os.path import exists, basename
 from datetime import datetime
 
 
-env.hosts = ['52.87.212.96', '100.25.46.237']
+env.hosts = ['54.226.45.35', '100.25.46.237']
 
 
 def do_pack():
