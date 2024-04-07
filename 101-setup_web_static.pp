@@ -25,18 +25,22 @@ package { 'nginx':
   provider => 'apt'
 }
 
-file { '/data':
+-> file { '/data':
   ensure  => 'directory',
   mode    => '0755',
   require => 'nginx'
 }
 
 -> file { '/data/web_static':
-  ensure => 'directory'
+  ensure  => 'directory',
+  mode    => '0755',
+  requirq => '/data/web_static'
 }
 
 -> file { '/data/web_static/releases':
-  ensure => 'directory'
+  ensure => 'directory',
+  mode    => '0755',
+  requirq => '/data/web_static/releases'
 }
 
 -> file { '/data/web_static/releases/test':
