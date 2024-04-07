@@ -10,9 +10,7 @@ from os.path import exists, basename
 from datetime import datetime
 
 
-env.hosts = ['54.85.96.172', '54.210.130.17']
-env.user = 'ubuntu'
-env.key_filename = '~/.ssh/id_rsa'
+env.hosts = ['52.87.212.96', '100.25.46.237']
 
 
 def do_pack():
@@ -21,13 +19,13 @@ def do_pack():
     web_static_<year><month><day><hour><minute><second>.tgz
     """
     try:
-        timestamp = datetime.now().strftime("%Y%m%d%H%M%S")
+        time = datetime.now().strftime("%Y%m%d%H%M%S")
         if not exists('versions'):
             local("mkdir -p versions")
-        filename = "versions/web_static_{}.tgz".format(timestamp)
-        local("tar -cvzf {} web_static".format(filename))
-        return filename
-    except Exception:
+        file_name = "versions/web_static_{}.tgz".format(time)
+        local("tar -cvzf {} web_static".format(file_name))
+        return file_name
+    except Exception as e:
         return None
 
 
@@ -45,21 +43,21 @@ def do_deploy(archive_path):
         )
         put(archive_path, '/tmp/{}'.format(archive_file))
         run("rm -rf {}/".format(archive_folder))
-        run('sudo mkdir -p {}/'.format(archive_folder))
-        run('sudo tar -xzf /tmp/{} -C {}/'.format(
+        run('mkdir -p {}/'.format(archive_folder))
+        run('tar -xzf /tmp/{} -C {}/'.format(
             archive_file, archive_folder
         ))
-        run('sudo rm /tmp/{}'.format(archive_file))
-        run('sudo mv {}/web_static/* {}/'.format(
+        run('rm /tmp/{}'.format(archive_file))
+        run('mv {}/web_static/* {}/'.format(
             archive_folder, archive_folder
         ))
-        run('sudo rm -rf {}/web_static'.format(archive_folder))
-        run('sudo rm -rf /data/web_static/current')
-        run('sudo ln -s {}/ /data/web_static/current'.format(
+        run('rm -rf {}/web_static'.format(archive_folder))
+        run('rm -rf /data/web_static/current')
+        run('ln -s {}/ /data/web_static/current'.format(
             archive_folder
         ))
         return True
-    except Exception:
+    except Exception as e:
         return False
 
 
