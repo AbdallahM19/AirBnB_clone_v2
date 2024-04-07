@@ -10,6 +10,8 @@ from os.path import exists, basename
 from datetime import datetime
 
 env.hosts = ['54.226.45.35', '100.25.46.237']
+
+
 def do_pack():
     """
     Packs all files in web_static to versions folder with name
@@ -57,8 +59,10 @@ def do_deploy(archive_path):
     except Exception as e:
         return False
 
+
 def deploy():
     """Full deployment process"""
     a_path = do_pack()
     if not a_path:
         return False
+    return do_deploy(a_path)
