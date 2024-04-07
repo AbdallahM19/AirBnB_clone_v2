@@ -12,13 +12,12 @@ def do_clean(number=0):
     """Deletes out-of-date archives"""
     number = 1 if int(number) == 0 else int(number)
 
-    archives = sorted(os.listdir("versions"))
-    [archives.pop() for i in range(number)]
-    with lcd("versions"):
-        [local("rm ./{}".format(i)) for i in archives]
+    # Clean local archives
+    local_archives = sorted(os.listdir("versions"))
+    [local("rm -f ./versions/{}".format(i)) for i in local_archives[:-number]]
 
+    # Clean remote archives
     with cd("/data/web_static/releases"):
         archives = run("ls -tr").split()
         archives = [i for i in archives if "web_static_" in i]
-        [archives.pop() for i in range(number)]
-        [run("rm -rf ./{}".format(i)) for i in archives]
+        [run("rm -rf ./{}".format(i)) for i in archives[:-number]]
