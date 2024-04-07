@@ -25,8 +25,10 @@ package { 'nginx':
   provider => 'apt'
 }
 
--> file { '/data':
-  ensure => 'directory'
+file { '/data':
+  ensure  => 'directory',
+  mode    => '0755',
+  require => 'nginx'
 }
 
 -> file { '/data/web_static':
