@@ -26,39 +26,28 @@ package { 'nginx':
 }
 
 -> file { '/data':
-  ensure  => 'directory',
-  mode    => '0755',
-  require => 'nginx'
+  ensure  => 'directory'
 }
 
 -> file { '/data/web_static':
-  ensure  => 'directory',
-  mode    => '0755',
-  requirq => '/data'
+  ensure => 'directory'
 }
 
 -> file { '/data/web_static/releases':
-  ensure  => 'directory',
-  mode    => '0755',
-  requirq => '/data/web_static'
+  ensure => 'directory'
 }
 
 -> file { '/data/web_static/releases/test':
-  ensure  => 'directory',
-  mode    => '0777',
-  requirq => '/data/web_static/releases'
+  ensure => 'directory'
 }
 
 -> file { '/data/web_static/shared':
-  ensure  => 'directory',
-  mode    => '0755',
-  requirq => '/data/web_static'
+  ensure => 'directory'
 }
 
 -> file { '/data/web_static/releases/test/index.html':
   ensure  => 'present',
   content => "webpage is found in data/web_static/releases/test/index.htm \n"
-  require => '/data/web_static/releases/test'
 }
 
 -> file { '/data/web_static/current':
