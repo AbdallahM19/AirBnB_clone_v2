@@ -10,7 +10,7 @@ from os.path import exists, basename
 from datetime import datetime
 
 
-env.hosts = ['54.85.96.172', '54.210.130.17']
+env.hosts = ['52.87.212.96', '100.25.46.237']
 
 
 def do_deploy(archive_path):
