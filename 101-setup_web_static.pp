@@ -26,7 +26,7 @@ package { 'nginx':
 }
 
 -> file { '/data':
-  ensure  => 'directory'
+  ensure => 'directory'
 }
 
 -> file { '/data/web_static':
