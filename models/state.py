@@ -11,10 +11,6 @@ from models.base_model import BaseModel, Base
 
 class State(BaseModel, Base):
     """ State class """
-    def __init__(self, *args, **kwargs):
-        """initializes state"""
-        super().__init__(*args, **kwargs)
-
     __tablename__ = 'states'
     name = Column(
         String(128), nullable=False
