@@ -24,14 +24,14 @@ class FileStorage:
 
     def all(self, cls=None):
         """Returns a dictionary of models currently in storage"""
+        filter_dict = {}
         if cls is None:
             return self.__objects
         else:
-            filtered_dict = {}
-            for key, value in self.__objects.items():
-                if type(value) is cls:
-                    filtered_dict[key] = value
-            return filtered_dict
+            for k, v in self.__objects.items():
+                if type(v) is cls:
+                    filter_dict[k] = v
+            return filter_dict
 
     def delete(self, obj=None):
         """Removes an object from the storage dictionary"""
@@ -50,8 +50,8 @@ class FileStorage:
         """Saves storage dictionary to file"""
         with open(self.__file_path, 'w') as file:
             temp = {}
-            for key, val in self.__objects.items():
-                temp[key] = val.to_dict()
+            for k, v in self.__objects.items():
+                temp[k] = v.to_dict()
             json.dump(temp, file)
 
     def reload(self):
@@ -61,8 +61,8 @@ class FileStorage:
             temp = {}
             with open(self.__file_path, 'r') as file:
                 temp = json.load(file)
-                for key, val in temp.items():
-                    self.all()[key] = classes[val['__class__']](**val)
+                for k, v in temp.items():
+                    self.all()[k] = classes[v['__class__']](**v)
 
     def close(self):
         """Closes the storage engine."""
