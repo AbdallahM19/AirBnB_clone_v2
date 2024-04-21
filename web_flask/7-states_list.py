@@ -14,13 +14,13 @@ def teardown(exception):
     storage.close()
 
 
-@app.route("/states_list", strict_slashes=False)
+@app.route(/states_list, strict_slashes=False)
 def states_list():
     """/states_list: display a HTML page: (inside the tag BODY:"""
-    states = sorted(storage.all(State).values(), key=lambda i: i.name)
+    states = sorted(list(storage.all(State).values()), key=lambda i: i.name)
     return render_template('7-states_list.html', states=states)
 
 
 if __name__ == "__main__":
     """run it"""
-    app.run(host='0.0.0.0', port='5000')
+    app.run(host='0.0.0.0', port=5000)
