@@ -8,18 +8,18 @@ from models import storage
 app = Flask(__name__)
 
 
-@app.teardown_appcontext
-def teardown(exception):
-    """Declare a method to handle @app.teardown_appcontext"""
-    storage.close()
-
-
 @app.route('/states_list', strict_slashes=False)
 def states_list():
     """/states_list: display a HTML page: (inside the tag BODY:"""
     state_all = list(storage.all().values())
     states = sorted(state_all, key=lambda i: i.name)
     return render_template('7-states_list.html', states=states)
+
+
+@app.teardown_appcontext
+def teardown(exception):
+    """Declare a method to handle @app.teardown_appcontext"""
+    storage.close()
 
 
 if __name__ == "__main__":
