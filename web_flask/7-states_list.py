@@ -8,7 +8,7 @@ from models import storage
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
-@app.route('/states_list', strict_slashes=False)
+@app.route('/states_list')
 def states_list():
     """/states_list: display a HTML page: (inside the tag BODY:"""
     state_all = list(storage.all().values())
