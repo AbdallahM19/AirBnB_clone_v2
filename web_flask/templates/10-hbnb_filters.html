@@ -1,53 +1,56 @@
 <!DOCTYPE html>
-<HTML lang="en">
-    <HEAD>
-        <META charset="utf-8">
-        <TITLE>AirBnB clone</TITLE>
-        <LINK rel="stylesheet" href="../static/styles/reset.css">
-        <LINK rel="stylesheet" href="../static/styles/4-common.css">
-        <LINK rel="stylesheet" href="../static/styles/3-header.css">
-        <LINK rel="stylesheet" href="../static/styles/3-footer.css">
-        <LINK rel="stylesheet" href="../static/styles/6-filters.css">
-        <LINK rel="icon" href="../static/images/icon.png">
-    </HEAD>
+<html lang="en">
 
-    <BODY>
-        <HEADER></HEADER>
+<head>
+    <meta charset="UTF-8">
+    <title>AirBnb Clone</title>
+    <link rel="stylesheet" href="../static/styles/4-common.css">
+    <link rel="stylesheet" href="../static/styles/3-header.css">
+    <link rel="stylesheet" href="../static/styles/3-footer.css">
+    <link rel="stylesheet" href="../static/styles/6-filters.css">
+    <link rel="icon" type="image/png" href="../static/images/icon.png">
+</head>
 
-        <DIV class="container">
-        <SECTION class="filters">
-            <DIV class="locations">
-            <H3>States</H3>
-            <H4>&nbsp;</H4>
-            <DIV class="popover">
-                <UL>
-                {% for state in states.values()|sort(attribute="name") %}
-                <LI><STRONG>{{ state.name }}</STRONG>
-                    <UL>
-                    {% for city in state.cities|sort(attribute="name") %}
-                    <LI>{{ city.name }}</LI>
-                    {% endfor %}
-                    </UL>
-                </LI>
+<body>
+    <header>
+    </header>
+
+    <div class="container">
+        <section class="filters">
+            <div class="locations">
+                <h3>States</h3>
+                <H4>&nbsp;</H4>
+                <ul class="popover">
+                {% for i in states.values()|sort(attribute="name") %}
+                    <li>
+                        <h2>{{ i.name }}</h2>
+                            <ul>
+                            {% for x in i.cities|sort(attribute="name") %}
+                                <li>{{ x.name }}</li>
+                            {% endfor %}
+                            </ul>
+                    </li>
                 {% endfor %}
-                </UL>
-            </DIV>
+                </ul>
+            </div>
 
-            </DIV><DIV class="amenities">
-            <H3>Amenities</H3>
-            <H4>&nbsp;</H4>
-            <UL class="popover">
-            {% for amenity in amenities.values()|sort(attribute="name") %}
-                <LI>{{ amenity.name }}</LI>
-            {% endfor %}
-            </UL>
-            </DIV>
-            <BUTTON>Search</BUTTON>
-        </SECTION>
-        </DIV>
+            <div class="amenities">
+                <h3>Amenities</h3>
+                <H4>&nbsp;</H4>
+                <ul class="popover">
+                    {% for a in amenities.values()|sort(attribute="name") %}
+                        <LI>{{ a.name }}</LI>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        <FOOTER>
+            <button>Search</button>
+        </section>
+    </div>
+
+    <footer>
         Holberton School
-        </FOOTER>
-    </BODY>
-</HTML>
+    </footer>
+</body>
+
+</html>

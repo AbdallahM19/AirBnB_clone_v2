@@ -1,101 +1,214 @@
-.filters {
-	display: block;
-	background-color: white;
-	height: 70px;
-	width: 100%;
-	border: 1px solid #DDDDDD;
-	border-radius: 4px;
+section.filters {
+    background-color: white;
+    height: 70px;
+    width: 100%;
+    position: fixed;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    align-items: center;
+    position: relative;
+}
+
+section.filters button {
+    font-size: 18px;
+    background-color: #FF5A5F;
+    color: #FFFFFF;
+    height: 48px;
+    width: 20%;
+    border: none;
+    border-radius: 4px;
+    float: right;
+    margin: 11px 30px;
+}
+
+section.filters button:hover {
+    border: 5px solid #0048ff;
+    background-color: #0062ff;
+    opacity: 0.9;
+}
+
+.locations,
+.amenities {
+    height: 100%;
+    width: 25%;
+    float: left;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .locations {
-	display: inline;
-	vertical-align: middle;
-	float: left;
-	height: 100%;
-	width: 25%;
-
-	line-height: 20px;
-	border-right: 1px solid #DDDDDD;
+    border-right: 1px solid #DDDDDD;
 }
 
-.filter_amenities {
-	display: inline;
-	vertical-align: middle;
-	height: 100%;
-	float: left;
-    width: 25%;
-
-	line-height: 20px;
+.locations h3,
+.amenities h3 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    text-align: left;
+    margin-left: 30px;
 }
 
-.popover {
-	list-style-type: none;
-	display: none;
-	background-color: #FAFAFA;
-	width: 100%;
-
-	margin-left: -1px;
-	margin-top: 8px;
-	padding: 25px 0px;
-
-	border: 1px solid #DDDDDD;
-	border-radius: 4px;
+.locations h4,
+.amenities h4 {
+    font-weight: 400;
+    font-size: 14px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+    margin-left: 30px;
 }
 
-.locations:hover .popover {
-	display: inline-block;
+.locations .popover {
+    display: none;
+    padding: 30px 0px 0px 45px;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: relative;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
-.filter_amenities:hover .popover {
-	display: inline-block;
+.amenities .popover {
+    display: none;
+    padding: 30px 0px 30px 45px;
+    background-color: #FAFAFA;
+    border: 1px solid #DDDDDD;
+    border-radius: 4px;
+    position: relative;
+    max-height: 300px;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
-ul {
-	list-style-type: none;
-	padding: 0px;
-	padding-bottom: 20px;
+.locations .popover:hover,
+.amenities .popover:hover {
+    color: #000000;
+    border: 5px solid #d8d8d8;
+}
+
+.locations ul {
+    padding-left: 22px;
+    margin-bottom: 30px;
+}
+
+.locations h2 {
+    margin: 1px;
+}
+
+.popover h2 {
+    font-size: 16px;
+}
+
+.locations .popover:hover h2 {
+    font-size: 20px;
 }
 
 li {
-}	
-
-h2 {
-	font-size: 16px;
-	padding-left: 30px;
-	margin: 0px;
+    list-style-type: none;
+    font-size: 14px;
+    margin-bottom: 1px;
 }
 
-h3 {
-	font-weight: 600;
-	margin-top: 12px;
-	margin-bottom: 5px;	
-	padding-left: 45px;
+.locations .popover:hover li,
+.amenities .popover:hover li {
+    font-size: 16px;
 }
 
-h4 {
-	font-size: 14px;
-	font-weight: 400;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	padding-left: 45px;
+.locations:hover .popover,
+.amenities:hover .popover {
+    display: block;
+    cursor: pointer;
 }
 
-button {
-	color: #FFFFFF;
-	font-size: 18px;
-	
-	height: 48px;
-	width: 20%;
-	background-color: #FF5A5F;
-	border-style: none;
-	border-radius: 4px;
-
-	float: right;
-	margin-top: 11px;
-	margin-bottom: 11px;
-	margin-right: 30px;
+@media only screen and (max-width: 1030px) {
+    .filters {
+        width: 90%;
+        margin: 0 auto;
+    }
 }
 
-button:hover {
-	opacity: 90%;
+@media only screen and (max-width: 600px) {
+
+    .filters .locations,
+    .filters .amenities {
+        width: 25%;
+    }
+
+    .filters .locations ul,
+    .filters .amenities ul {
+        padding: 0.7em;
+    }
+
+    .filters .locations li {
+        margin-left: 5%;
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .filters button {
+        font-size: 18px;
+        justify-content: center;
+        right: 8px;
+        width: 20%;
+        padding: 0px;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+
+    .filters .locations,
+    .filters .amenities {
+        width: 25%;
+        font-size: 0.85em;
+    }
+
+    .filters .locations h3,
+    .filters .amenities h3 {
+        font-weight: 600;
+        font-size: 18px;
+        margin: 20px 0px 0px 30px;
+    }
+
+    .locations h4,
+    .amenities h4 {
+        font-weight: 400;
+        font-size: 14px;
+        margin: 20px 0px 0px 30px;
+    }
+
+    .filters .locations ul {
+        padding-left: 22px;
+        margin-bottom: 30px;
+    }
+}
+
+@media only screen and (max-width: 280px) {
+    .filters button {
+        font-size: 18px;
+        width: 20%;
+    }
+
+    .popover h2 {
+        font-size: 16px;
+    }
+}
+
+@media only screen and (max-width: 250px) {
+    .filters button {
+        font-size: 18px;
+        width: 20%;
+        padding: 0;
+        height: 48px;
+    }
+
+    .filters .locations ul {
+        padding-left: 22px;
+        margin-bottom: 30px;
+    }
 }

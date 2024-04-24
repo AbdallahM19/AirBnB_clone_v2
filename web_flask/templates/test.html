@@ -22,16 +22,16 @@
                 <h3>States</h3>
                 <h4>&nbsp;</h4>
                 <ul class="popover">
-                    <li>
-                    {% for i in states.values()|sort(attribute="name") %}
-                      <h2>{{ i.name }}</h2>
-                        <ul>
-                            {% for x in i.cities|sort(attribute="name") %}
-                                <li>{{ x.name }}</li> 
-                            {% endfor %}
-                        </ul>
+                    {% for state in states %}
+                        <li>
+                            <h2>{{ state.name }}</h2>
+                            <ul>
+                                {% for city in state.cities %}
+                                    <li>{{ city.name }}</li> 
+                                {% endfor %}
+                            </ul>
+                        </li>
                     {% endfor %}
-                    </li>
                 </ul>
             </div>
 
@@ -39,8 +39,8 @@
                 <h3>Amenities</h3>
                 <h4>&nbsp;</h4>
                 <ul class="popover">
-                    {% for a in amenities.values()|sort(attribute="name") %}
-                        <li>{{ a.name }}</li>
+                    {% for amenity in amenities %}
+                        <li>{{ amenity.name }}</li>
                     {% endfor %}
                 </ul>
             </div>
@@ -49,44 +49,50 @@
         </section>
         <section class="places">
             <h1>Places</h1>
-            {% for p in places.values()|sort(attribute="name") %}
+            {% for place in places %}
             <article>
-                <h2 class="my-home">{{ p.name }}</h2>
-                <div class="price_by_night">&#36;{{ p.price_by_night }}</div>
+                <h2 class="my-home">{{ place.name }}</h2>
+                <div class="price_by_night">&#36;{{ place.price_by_night }}</div>
                 <div class="information">
-                    <div class="max_guest">{{ p.max_guest }} Guests</div>
-                    <div class="number_rooms">{{ p.number_rooms }} Room</div>
-                    <div class="number_bathrooms">{{ p.number_bathrooms }} bathroom</div>
+                    <div class="max_guest">{{ place.max_guest }} Guests</div>
+                    <div class="number_rooms">{{ place.number_rooms }} Room</div>
+                    <div class="number_bathrooms">{{ place.number_bathrooms }} bathroom</div>
                 </div>
 
                 <div class="user">
                     <strong>Owner:</strong>
-                    {{ p.user.first_name }} {{ p.user.last_name }}
+		    Longye Chen
                 </div>
                 <div class="description">
-                    {{ p.description|safe }}
+                    {{ place.description|safe }}
                 </div>
                 <div class="amenities">
                     <h2>Amenities</h2>
-                    {% for amenity in p.amenities|sort(attribute="name") %}
+                    {% for amenity in place.amenities %}
                     <ul class="list-of-amenities">
+                        <li class="tv">TV</li>
+                        <li class="wifi">Wifi</li>
+                        <li class="pets">Pet Friendly</li>
                         <LI><P>{{ amenity.name }}</P></LI>
                     </ul>
                     {% endfor %}
                 </div>
                 <div class="reviews">
-                    <h2>{{ p.reviews.__len__() }} Reviews</h2>
+                    <h2>{{ place.reviews.__len__() }} Reviews</h2>
                     <ul class="list-of-reviews">
-                        {% for r in p.reviews %}
+                        {% for review in place.reviews %}
                         <li>
-                            <h3>From {{ r.user.first_name }} the {{ r.created_at.date().__str__() }}</h3>
-                            <p>{{ r.text|safe }}</p>
+                            <h3>From {{ review.user.first_name }} the {{ review.created_at.date().__str__() }}</h3>
+                            <p>{{ review.text|safe }}</p>
                         </li>
                         {% endfor %}
                     </ul>
                 </div>
             </article>
             {% endfor %}
+        </section>
+    </div>
+
     <footer>
         Best School
     </footer>
